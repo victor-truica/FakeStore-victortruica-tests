@@ -1,0 +1,50 @@
+
+name: Test Suite
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  quick-regression:
+    name: Quick Regression
+    runs-on: ubuntu-latest
+    
+    steps:
+      - uses: actions/checkout@v3
+      
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.12'
+      
+      - name: Install dependencies
+        run: |
+          pip install -r requirements.txt
+      
+      - name: Run quick regression tests
+        run: |
+          pytest -m quick_regression -v
+
+  full-regression:
+    name: Full Regression
+    runs-on: ubuntu-latest
+    needs: quick-regression
+    
+    steps:
+      - uses: actions/checkout@v3
+      
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.12'
+      
+      - name: Install dependencies
+        run: |
+          pip install -r requirements.txt
+      
+      - name: Run full regression tests
+        run: |
+          pytest -m full_regression -v --cov=. --cov-report=term

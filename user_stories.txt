@@ -1,0 +1,36 @@
+We ask you to demonstrate your automation skills by producing a test suite that covers some user workflows. You should also include any tests that would be relevant but are not covered below. However, please focus on the objective of the user story and what it is trying to verify.
+Using your preferred test framework, please create a test project using FakeStore API.  We will utilise this API to support a fictitious online store that allows users to: -
+ 
+User Action	Api End Point
+Add product to the store	--- POST /products
+View the store’s product collection	--- GET / products
+View the details of a specific product	--- GET /products/id
+Update a product	--- PUT /products/id
+Remove a product from the store	--- DELETE /products/id
+ 
+The API details are: -
+Link:  https://github.com/keikaavousi/fake-store-api
+During the interview, we will review the project to discuss your preferred patterns and the project structure of your tests.  Please send your project before the interview so we have sufficient time to review it. 
+
+ 
+ 
+User Story 1
+As an online shopper, I want to view all available products and add the cheapest electronics item to my cart.
+Acceptance Criteria:
+* The product must belong to a specific category.
+* Only products that are in stock (have quantity available) should be considered.
+* Once added to the cart, the product should appear with correct price and quantity.
+ 
+User Story 2
+As a store manager, I want to add three new clothing items to the product catalogue.
+Acceptance Criteria:
+* Each product must have a unique name and ID.
+* Products with duplicate names or IDs should be rejected.
+* The newly added items should be immediately visible via the product listing API.
+ 
+User Story 3
+As a store admin, I want to delete the product with the lowest rating from the store.
+Acceptance Criteria:
+* The product must be selected based on the lowest customer rating.
+* After deletion, the product should no longer appear in any product listing.
+* Attempts to retrieve the deleted product should return a 404 Not Found.
